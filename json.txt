@@ -1,0 +1,15 @@
+pagina de json 
+
+anotacion
+
+http://qaru.site/questions/1568329/spring-boot-could-not-resolve-view-with-name
+
+https://www.programering.com/a/MjN3IzMwATc.html
+
+https://www.javadevjournal.com/spring/spring-http-message-converter/
+
+https://www.baeldung.com/spring-httpmessageconverter-rest.
+
+xml 
+
+https://www.journaldev.com/2552/spring-rest-example-tutorial-spring-restful-web-services
