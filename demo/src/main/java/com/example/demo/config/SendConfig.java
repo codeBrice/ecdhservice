@@ -20,7 +20,7 @@ import java.util.List;
 public class SendConfig extends WebMvcConfigurerAdapter {
 
     @Bean (name = "SendClient")
-    public SendClient remesaCliente (@Value("http://localhost:8080/sendService")String endpoint){
+    public SendClient sendClient (@Value("${service.banano.send}")String endpoint){
         return new SendClient(endpoint);
     }
 
