@@ -19,6 +19,12 @@ import java.util.List;
 @ComponentScan("com.example.demo.controller")
 public class SendConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * Creates a bean of a SendClient
+     * config endpoint banano send sendservice
+     * @param endpoint url service
+     * @return SendClient
+     */
     @Bean (name = "SendClient")
     public SendClient sendClient (@Value("${service.banano.send}")String endpoint){
         return new SendClient(endpoint);
@@ -26,7 +32,7 @@ public class SendConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Creates a bean of a HttpRequestMappingHandler Adapter
-     *
+     * In charge of transforming json to an object
      * @return HttpRequestMappingHandler
      */
     @Bean

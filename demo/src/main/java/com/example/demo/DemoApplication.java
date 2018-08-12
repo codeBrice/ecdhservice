@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * use auto-configuration, component scan and be able to define extra configuration on their "application class"
+ */
 @SpringBootApplication
 public class DemoApplication  extends SpringBootServletInitializer {
 

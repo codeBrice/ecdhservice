@@ -3,10 +3,25 @@ package com.example.demo.to;
 
 public class SendTo
 {
+    /**
+     * requested action
+     */
     private String action;
+    /**
+     * wallet
+     */
     private String wallet;
+    /**
+     * source to which the bananos will be debited
+     */
     private String source;
+    /**
+     * source to which the bananas will be added
+     */
     private String destination;
+    /**
+     * amount to transfer
+     */
     private String amount;
 
     public String getAmount ()
@@ -60,8 +75,13 @@ public class SendTo
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [amount = "+amount+", source = "+source+", action = "+action+", wallet = "+wallet+", destination = "+destination+"]";
+    public String toString() {
+        return "SendTo{" +
+                "action='" + action + '\'' +
+                ", wallet='" + wallet + '\'' +
+                ", source='" + source + '\'' +
+                ", destination='" + destination + '\'' +
+                ", amount='" + amount + '\'' +
+                '}';
     }
 }

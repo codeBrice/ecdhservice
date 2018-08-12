@@ -6,9 +6,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.StringTokenizer;
 
+/**
+ * class responsible for providing the data for the creation of logs
+ */
 public class ManageLogs {
-    /*Atributos*/
     private static final Logger log = LoggerFactory. getLogger(ManageLogs.class);
+    /**
+     * phases of the request
+     */
     public static final String START = "START";
     public static final String PROCESS = "PROCESS";
     public static final String SUCCESS = "SUCCESS";
@@ -16,8 +21,8 @@ public class ManageLogs {
 
     public static final String NOSUCCESS = "NOSUCCESS";
     /**
-     * metodo para optener el ManagedServer
-     * @return
+     * get ip from the weblogic server where it is hosted
+     * @return String iphost
      */
    /* public static String obtenerManagedServer() {
         String serverName = null;
@@ -37,10 +42,10 @@ public class ManageLogs {
 
 
     /**
-     * metodo para optener la direccion de ip del host
-     * @return
+     * method to get the host's IP address
+     * @return String iphost
      */
-    public static String obtenerIpHost(){
+    public static String getIpHost(){
         InetAddress ip = null;
         try {
             ip = InetAddress.getLocalHost();
@@ -50,10 +55,10 @@ public class ManageLogs {
         return String.valueOf(ip);
     }
     /**
-     * metodo para optener la direccion de ip del usuario
-     * @return
+     * method to obtain the user's ip address
+     * @return String ipAddress
      */
-    public static String obtenerIpUser(HttpServletRequest request){
+    public static String getIpUser(HttpServletRequest request){
         String ipAddress = "";
         try {
             ipAddress= request.getHeader("X-Forwarded-For");

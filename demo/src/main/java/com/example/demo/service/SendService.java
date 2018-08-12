@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * class responsible for all business rules before calling services or databases
+ */
 @Service
 public class SendService {
     private static final Logger log = LoggerFactory. getLogger(SendService.class);
@@ -18,6 +21,11 @@ public class SendService {
         this.sendClient = sendClient;
     }
 
+    /**
+     *method that has the business rules and call the banana service send. if necessary a Repository class is added for connections to database
+     * @param sendTo json of all the parameters necessary for the service
+     * @return SendTo json with the final answer
+     */
     public SendTo Send (final SendTo sendTo){
         SendTo SendResult = null;
         try {
