@@ -16,10 +16,10 @@ public class SendClient {
         try {
             log.debug(manageLogs.PROCESS + "| Call Service Banano |"+sendTo.toString());
             if (true) {
-                log.info(manageLogs.SUCCESS+"| Service Banano");
+                log.debug(manageLogs.SUCCESS+"| Service Banano");
                 sendTo.setAction("Success");
             } else {
-                log.info(manageLogs.NOSUCCESS+"| Service Banano");
+                log.debug(manageLogs.NOSUCCESS+"| Service Banano");
                 sendTo.setAction("No Success");
             }
             return sendTo;

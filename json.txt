@@ -15,3 +15,24 @@ xml
 https://www.journaldev.com/2552/spring-rest-example-tutorial-spring-restful-web-services
 
 prueba jesus
+
+
+git remote -v
+
+faces para subir cambiar "feature_sak963" por "master" de ser el "master"
+
+**actualizar
+
+git pull origin feature_sak963
+
+**agregar  todos
+
+git add -A
+
+**preparar
+
+git commit -m "mensajee"
+
+**subir
+
+git push origin feature_sak963 
