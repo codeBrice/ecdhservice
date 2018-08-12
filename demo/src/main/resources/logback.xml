@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_PATH" value="/tmp/logs/ecdh/" />
+	<property name="LOG_ARCHIVE" value="${LOG_PATH}/archive" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	    <layout class="ch.qos.logback.classic.PatternLayout">
+		<Pattern>
+			%d{yyyy-MM-dd HH:mm:ss}|%-5level|%class{36}.%M %L|%msg%n
+		</Pattern>
+	    </layout>
+	</appender>
+
+	<appender name="logApplication" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/application.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_ARCHIVE}/application.log%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+				%d{yyyy-MM-dd HH:mm:ss}|%-5level|%class{36}.%M %L|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+		<!--<logger name="org.springframework" level="debug" additivity="false">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="logApplication" />
+		</logger>-->
+
+		<logger name="com.example.demo" level="all" additivity="false">-->
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="logApplication" />
+		</logger>
+
+        <root level="error">
+            <!--<appender-ref ref="STDOUT" />-->
+			<appender-ref ref="logApplication" />
+		</root>
+
+</configuration>
