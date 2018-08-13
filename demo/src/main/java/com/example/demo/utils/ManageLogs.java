@@ -54,8 +54,10 @@ public class ManageLogs {
         }
         return String.valueOf(ip);
     }
+
     /**
      * method to obtain the user's ip address
+     * @param request HttpServletRequest
      * @return String ipAddress
      */
     public static String getIpUser(HttpServletRequest request){
