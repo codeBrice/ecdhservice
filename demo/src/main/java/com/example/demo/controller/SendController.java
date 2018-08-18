@@ -6,39 +6,60 @@ import com.example.demo.utils.ManageLogs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-
 /**
- *class responsible for receiving all requests and their information
+ * class responsible for receiving all requests and their information.
+ *
+ * @since 1.0
+ * @author teamJeb
+ * @version 1.0
  */
 @RestController
 public class SendController {
-    private static final Logger log = LoggerFactory. getLogger(SendController.class);
+    /**
+     *  varresponsible for calling the types of logs.
+     */
+    private static final Logger log = LoggerFactory.getLogger(SendController.class);
+    /**
+     * where are the states of the transaction and other utilities.
+     */
+    private ManageLogs manageLogs;
 
-    ManageLogs manageLogs;
-
+    /**
+     * call the methods of sending the transaction.
+     */
     @Autowired
-    SendService sendService;
-
+    private SendService sendService;
+    /**
+     *to access the HttpRequest information as the ip.
+     */
     private HttpServletRequest request;
 
+    /**
+     * everyone who calls this service will get their information.
+     * @param request their information.
+     */
     @Autowired
-    public void setRequest(HttpServletRequest request) {
+    private void setRequest(final HttpServletRequest request) {
         this.request = request;
     }
 
     /**
-     * test service get
-     * @return SendTo json sendTo
+     * test service get.
+     * @return SendTo json sendTo.
      */
-    @RequestMapping(value="/getSend", method= RequestMethod.GET)
-    public SendTo getSend(){
+    @RequestMapping(value = "/getSend", method = RequestMethod.GET)
+    public SendTo getSend() {
         log.info(manageLogs.START);
 
         log.debug(manageLogs.PROCESS);
-        SendTo sendTo = new SendTo();
+        final SendTo sendTo = new SendTo();
         sendTo.setAction("send");
         sendTo.setWallet("000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F");
         sendTo.setSource("ban_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000");
@@ -50,21 +71,21 @@ public class SendController {
     }
 
     /**
-     * method responsible for receiving the json and pass it to the service
-     * @param send json of all the parameters necessary for the service
-     * @return SendTo json with the final answer
+     * method responsible for receiving the json and pass it to the service.
+     * @param send json of all the parameters necessary for the service.
+     * @return SendTo json with the final answer.
      */
-    @RequestMapping(value="/send", method = RequestMethod.POST)
-    public @ResponseBody SendTo send(@RequestBody SendTo send) {
-        log.info(manageLogs.START+"|"+manageLogs.getIpHost()+"|"+manageLogs.getIpUser(request));
-        SendTo SendResult = null;
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public @ResponseBody SendTo send(@RequestBody final SendTo send) {
+        log.info(manageLogs.START.concat("|").concat(manageLogs.getIpHost()).concat("|").concat(manageLogs.getIpUser(request)));
+        SendTo sendResult = null;
         try {
-            log.debug(manageLogs.PROCESS + "| Call sendService.Send |"+send.toString());
-            SendResult =  sendService.Send(send);
-            log.info(manageLogs.SUCCESS+"|"+manageLogs.getIpHost()+"|"+manageLogs.getIpUser(request));
+            log.debug(manageLogs.PROCESS.concat("| Call sendService.send |").concat(send.toString()));
+            sendResult =  sendService.send(send);
+            log.info(manageLogs.SUCCESS.concat("|").concat(manageLogs.getIpHost()).concat("|").concat(manageLogs.getIpUser(request)));
         } catch (Exception e) {
-            log.error(manageLogs.ERROR+"|"+manageLogs.getIpHost()+"|"+manageLogs.getIpUser(request),e);
+            log.error(manageLogs.ERROR.concat("|").concat(manageLogs.getIpHost()).concat("|").concat(manageLogs.getIpUser(request)), e);
         }
-        return SendResult;
+        return sendResult;
     }
 }

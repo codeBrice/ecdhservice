@@ -23,6 +23,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<javadoc.version>3.0.0</javadoc.version>
+		<checkstyle.version>3.0.0</checkstyle.version>
+		<pmd.version>3.8</pmd.version>
+		<compile.source>1.8</compile.source>
 	</properties>
 
 	<dependencies>
@@ -56,13 +59,61 @@
 			<version>${javadoc.version}</version>
 			<type>maven-plugin</type>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-pmd-plugin</artifactId>
+			<version>${pmd.version}</version>
+			<type>maven-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-checkstyle-plugin</artifactId>
+			<version>${checkstyle.version}</version>
+			<type>maven-plugin</type>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.version}</version>
+				<configuration>
+					<configLocation>/src/main/resources/checkstyle.xml</configLocation>
+					<logViolationsToConsole>true</logViolationsToConsole>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<outputFileFormat>plain</outputFileFormat>
+					<outputFile>${project.build.directory}/checkstyle-result.txt</outputFile>
+				</configuration>
+			</plugin>-->
+			<!--<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${javadoc.version}</version>
+			</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${pmd.version}</version>
+				<configuration>
+					<targetJdk>${compile.source}</targetJdk>
+					<rulesets>
+						<ruleset>/rulesets/java/basic.xml</ruleset>
+						<ruleset>/rulesets/java/imports.xml</ruleset>
+						<ruleset>/rulesets/java/optimizations.xml</ruleset>
+						<ruleset>/rulesets/java/strings.xml</ruleset>
+						<ruleset>/rulesets/java/typeresolution.xml</ruleset>
+						<ruleset>/rulesets/java/unusedcode.xml</ruleset>
+					</rulesets>
+					<targetDirectory>${project.build.directory}/pmd/</targetDirectory>
+					<format>txt</format>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -70,8 +121,38 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.version}</version>
+				<configuration>
+					<logViolationsToConsole>true</logViolationsToConsole>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<outputFileFormat>plain</outputFileFormat>
+					<outputFile>${project.build.directory}/checkstyle-result.txt</outputFile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${javadoc.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${pmd.version}</version>
+				<configuration>
+					<targetJdk>${compile.source}</targetJdk>
+					<rulesets>
+						<ruleset>/rulesets/java/basic.xml</ruleset>
+						<ruleset>/rulesets/java/imports.xml</ruleset>
+						<ruleset>/rulesets/java/optimizations.xml</ruleset>
+						<ruleset>/rulesets/java/strings.xml</ruleset>
+						<ruleset>/rulesets/java/typeresolution.xml</ruleset>
+						<ruleset>/rulesets/java/unusedcode.xml</ruleset>
+					</rulesets>
+					<targetDirectory>${project.build.directory}/pmd/</targetDirectory>
+					<format>txt</format>
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>

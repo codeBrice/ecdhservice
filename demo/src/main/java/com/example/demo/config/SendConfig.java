@@ -14,31 +14,38 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class responsible for connecting external services with our service.
+ *
+ * @since 1.0
+ * @author teamJeb
+ * @version 1.0
+ */
 @EnableWebMvc
 @Configuration
 @ComponentScan("com.example.demo.controller")
 public class SendConfig extends WebMvcConfigurerAdapter {
 
     /**
-     * Creates a bean of a SendClient
-     * config endpoint banano send sendservice
-     * @param endpoint url service
-     * @return SendClient
+     * Creates a bean of a SendClient.
+     * config endpoint banano send sendservice.
+     * @param endpoint url service.
+     * @return SendClient.
      */
     @Bean (name = "SendClient")
-    public SendClient sendClient (@Value("${service.banano.send}")String endpoint){
+    public SendClient sendClient(@Value("${service.banano.send}")final String endpoint) {
         return new SendClient(endpoint);
     }
 
     /**
-     * Creates a bean of a HttpRequestMappingHandler Adapter
-     * In charge of transforming json to an object
-     * @return HttpRequestMappingHandler
+     * Creates a bean of a HttpRequestMappingHandler Adapter.
+     * In charge of transforming json to an object.
+     * @return HttpRequestMappingHandler.
      */
     @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-        RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
-        List<HttpMessageConverter<?>> messageConverterList = new ArrayList<>();
+        final RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
+        final List<HttpMessageConverter<?>> messageConverterList = new ArrayList<>();
         messageConverterList.add(new MappingJackson2HttpMessageConverter());
         requestMappingHandlerAdapter.setMessageConverters(messageConverterList);
         return requestMappingHandlerAdapter;
